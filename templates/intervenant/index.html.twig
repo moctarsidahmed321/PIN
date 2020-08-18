@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Intervenant index{% endblock %}
+
+{% block body %}
+    <h1>Intervenants</h1>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Date de passage</th>
+                <th>Heure de fin</th>
+                <th>Nom Prénom</th>
+                <th>Sujet</th>
+                <th>Contenu</th>
+                <th>Biographie</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for intervenant in intervenants %}
+            <tr>
+                <td>{{ intervenant.datePassage ? intervenant.datePassage|date('Y-m-d H:i') : '' }}</td>
+                <td>{{ intervenant.heureFin ? intervenant.heureFin|date('H:i') : '' }}</td>
+                <td>{{ intervenant.nickName }}</td>
+                <td>{{ intervenant.sujet }}</td>
+                <td>{{ intervenant.contenu }}</td>
+                <td>{{ intervenant.biographie }}</td>
+                <td>
+                    <a href="{{ path('intervenant_show', {'id': intervenant.id}) }}">voir</a>
+                    <a href="{{ path('intervenant_edit', {'id': intervenant.id}) }}">modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">Il n'existe pas d'intervenant</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('intervenant_new') }}"class="btn btn-outline-secondary mt-1">Créer un nouvel intervenant</a>
+{% endblock %}

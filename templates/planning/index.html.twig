@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Programme Général {% endblock %}
+
+{% block body %}
+    <h1 class="mt-4">Programme Général</h1>
+    <div class="mb-5">
+        <hr />
+    </div>
+    {% for programme in programmes %}
+        <h4> {{ programme.nomProgramme }}
+            {# On affiche le bouton abonner que si l'utilisateur est connecté #}
+            {% if app.user is not null %}
+                {% for user in programme.users.toArray|filter(user => user.id == app.user.id) %}
+                    <span class="badge badge-secondary">Vous êtes déjà abonné à ce programme</span>
+                {% else %}
+                    <a href="{{ path('abonner', {'id': programme.id}) }}" class="badge badge-primary" title="S'abonner à ce Programme">S'abonner</a>
+                {% endfor %}
+            {% endif %}
+        </h4>
+        <ul>
+        {% for intervenant in programme.intervenants %}  
+            <li>
+              <a class="text-secondary" href="{{ path('sujet_intervention', {'id': intervenant.id }) }}">{{ intervenant.sujet }}</a> - <a href="{{ path('speaker', {'id': intervenant.id }) }}">{{ intervenant.nickname }}</a>
+                <br>
+                {{ intervenant.datePassage|date('d/m/Y à H:i') }} - {{ intervenant.heureFin|date('H:i') }}
+            </li>
+        {% endfor %}
+        </ul>
+    {% endfor %}
+{% endblock %}

@@ -1,0 +1,8 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Intervenant {{ intervenant.nickname }}{% endblock %}
+
+{% block body %}
+    <h1>{{ intervenant.nickname }}</h1>
+    <p>{{ intervenant.biographie }}</p>
+{% endblock %}

@@ -1,0 +1,5 @@
+<form class="mt-1" method="post" action="{{ path('intervenant_delete', {'id': intervenant.id}) }}" onsubmit="return confirm('êtes-vous sûr de vouloir supprimer cet intervenant ?');">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ intervenant.id) }}">
+    <button class="btn btn-danger">Supprimer</button>
+</form>

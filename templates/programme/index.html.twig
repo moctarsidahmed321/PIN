@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Les programmes {% endblock %}
+
+{% block body %}
+    <h1>Programme </h1>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Nom du programme</th>
+                <th>Date et heure de début</th>
+                <th>Date et heure de fin</th>
+                <th>Inscrits</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for programme in programmes %}
+            <tr>
+                <td>{{ programme.nomProgramme }}</td>
+                <td>{{ programme.dateHeureDebut ? programme.dateHeureDebut|date('Y-m-d H:i') : '' }}</td>
+                <td>{{ programme.dateHeureFin ? programme.dateHeureFin|date('Y-m-d H:i') : '' }}</td>
+                <td>
+                    {#  pour afficher le nombre d'inscrits au sein d'un programme #}
+                    {{ programme.users.toArray|length }}
+                </td>
+                
+                <td>
+                    <a href="{{ path('programme_show', {'id': programme.id}) }}">voir</a>
+                    <a href="{{ path('programme_edit', {'id': programme.id}) }}">modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">Pas de programme</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('programme_new') }}" class="btn btn-outline-secondary mt-1">Créer un nouveau programme</a>
+{% endblock %}

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}{% endblock %} - PIN</title>
+        {% block stylesheets %}
+            <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
+            <link rel="stylesheet" href="{{ asset('assets/css/styles.css') }}">
+        {% endblock %}
+    </head>
+    <body>
+        {#
+            Si on ds l'admin on affiche _header_admin.html.twig
+            Sinon on affiche _header_site.html.twig
+        #}
+        {% if '/admin/' in app.request.pathInfo %}
+            {% include 'layout/_header_admin.html.twig' %}
+        {% else %}
+            {% include 'layout/_header_site.html.twig' %}
+        {% endif %}
+
+        <div class="container">
+            {% for label, messages in app.flashes %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ label }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endfor %}
+            {% block body %}{% endblock %}
+        </div>
+        {% include 'layout/_footer.html.twig' %}
+
+        {% block javascripts %}
+            <script type="text/javascript" src="{{ asset('assets/js/jquery.min.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
+        {% endblock %}
+    </body>
+</html>

@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Créer une nouvelle page{% endblock %}
+
+{% block body %}
+    <h1>Création d'une nouvelle page</h1>
+
+    {{ include('page/_form.html.twig') }}
+
+    <a href="{{ path('page_index') }}" class="btn btn-outline-secondary mt-1">< Retour à la liste</a>
+{% endblock %}

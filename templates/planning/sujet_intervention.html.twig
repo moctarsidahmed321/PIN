@@ -1,0 +1,8 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Sujet intervention: {{intervenant.sujet}} {% endblock %}
+
+{% block body %}
+    <h1 class="mt-4">{{intervenant.sujet}}</h1>
+    <p>{{intervenant.contenu}}</p>
+{% endblock %}
