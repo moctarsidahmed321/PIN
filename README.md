@@ -13,5 +13,6 @@ Installer les dépendances
 ```console 
 composer install
 ```
-Importer la base de données(fichier pin.sql qui se trouve à la racine du projet) via PhpMyAdmin
-Aller sur le site http://localhost/pin/public/index.php/
+Importer la base de données(fichier `pin.sql` qui se trouve à la racine du projet) via PhpMyAdmin
+
+En fin aller sur le site http://localhost/pin/public/index.php/
